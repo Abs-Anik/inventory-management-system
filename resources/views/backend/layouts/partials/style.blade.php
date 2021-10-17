@@ -18,3 +18,16 @@
       <link rel="stylesheet" href="{{ asset('public/backend/plugins/daterangepicker/daterangepicker.css')}}">
       <!-- summernote -->
       <link rel="stylesheet" href="{{ asset('public/backend/plugins/summernote/summernote-bs4.min.css')}}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('public/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/backend/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/backend/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- Summernote -->
+
+    <link href="{{asset('public/backend/summernote/summernote-bs4.css')}}" rel="stylesheet">
+
+    <!-- Dropify CSS -->
+<link rel="stylesheet" type="text/css" href="{{ asset('public/backend/dropify/css/dropify.min.css') }}">

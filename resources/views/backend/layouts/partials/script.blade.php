@@ -32,3 +32,155 @@
       <script src="{{asset('public/backend/dist/js/demo.js')}}"></script>
       <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
       <script src="{{asset('public/backend/dist/js/pages/dashboard.js')}}"></script>
+
+      <!-- DataTables  & Plugins -->
+    <script src="{{asset('public/backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/jszip/jszip.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+    <!-- jquery-validation -->
+    <script src="{{asset('public/backend/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/jquery-validation/additional-methods.min.js')}}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{asset('public/backend/summernote/summernote-bs4.min.js')}}"></script>
+    <script src="{{ asset('public/backend/dropify/js/dropify.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote({
+                height: 100
+            });
+        });
+    </script>
+    <script>
+        $(".dropify").dropify();
+    </script>
+
+    <script>
+        $(function () {
+          $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+          $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+          });
+        });
+      </script>
+    <script>
+        @if (Session::has('Message'))
+            var type = "{{ Session::get('alert-type', 'info') }}";
+            switch(type){
+            case 'info':
+            toastr.info("{{ Session::get('Message') }}");
+            break;
+
+            case 'warning':
+            toastr.warning("{{ Session::get('Message') }}");
+            break;
+
+            case 'success':
+            toastr.success("{{ Session::get('Message') }}");
+            break;
+
+            case 'error':
+            toastr.error("{{ Session::get('Message') }}");
+            break;
+            }
+        @endif
+    </script>
+
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: "Are you sure you want to delete this record?",
+            text: "If you delete this, it will be gone forever.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                form.submit();
+            }
+            });
+        });
+    </script>
+
+<script>
+    $(function () {
+      $.validator.setDefaults({
+        submitHandler: function () {
+      $('#myForm').validate({
+        rules: {
+        usertype: {
+            required: true,
+          },
+          name: {
+            required: true,
+          },
+          email: {
+            required: true,
+            email: true,
+          },
+          password: {
+            required: true,
+            minlength: 8
+          },
+          passwordConfirm: {
+            required: true,
+            equalTo:'#password'
+          },
+        },
+        messages: {
+        usertype: {
+            required: "Please select user role",
+          },
+          name: {
+            required: "Please enter username",
+          },
+          email: {
+            required: "Please enter a email address",
+            email: 'Please enter a <em>valid</em> email address'
+          },
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 8 characters long"
+          },
+          passwordConfirm: {
+            required: "Please enter confirm password",
+            minlength: "Confirm password does not match"
+          },
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
+    </script>
