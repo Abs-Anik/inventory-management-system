@@ -51,7 +51,6 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->image = 'avatar.jpg';
         $user->save();
         DB::commit();
         $notification = array(

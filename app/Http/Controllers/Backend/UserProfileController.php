@@ -83,7 +83,7 @@ class UserProfileController extends Controller
             'mobile' => 'required|string',
             'gender' => 'required',
             'address' => 'required|max:255',
-            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $user = User::where('id', $id)->first();
         try {
@@ -122,5 +122,34 @@ class UserProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function userPasswordChangeView()
+    {
+        return view('backend.profile.editPassword');
+    }
+
+    public function userPasswordChangeUpdate(Request $request)
+    {
+        $request->validate([
+            'currentPassword' => 'required',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+        if(Auth::attempt(['id' => Auth::user()->id, 'password' => $request->currentPassword])){
+            $user = User::find(Auth::user()->id);
+            $user->password = bcrypt($request->password);
+            $user->update();
+            $notification = array(
+                'Message' => 'Password Changed Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('admin.user.profile.show')->with($notification);
+        }else{
+            $notification = array(
+                'Message' => 'Sorry! your current password does not matched',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('admin.user.password.change')->with($notification);
+        }
     }
 }

@@ -50,7 +50,6 @@ Edit User Profile
                    <div class="card-body">
                     <form action="{{ route('admin.user.profile.update',$user->id) }}" method="POST" id="myForm" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="name">Name</label>
@@ -96,7 +95,15 @@ Edit User Profile
                             @if (!empty($user->image))
                             <div class="form-group col-md-12">
                                 <label for="image">Profile Image</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror dropify" name="image" data-default-file="{{ asset('public/backend/images/profile/'.$user->image) }}">
+                                <input type="file" class="form-control @error('image') is-invalid @enderror dropify" name="image" data-default-file="{{ asset('public/backend/images/user_profile/'.$user->image) }}">
+                                @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            @else
+                            <div class="form-group col-md-12">
+                                <label for="image">Profile Image</label>
+                                <input type="file" class="form-control @error('image') is-invalid @enderror dropify" name="image" data-default-file="{{ asset('public/backend/images/profile/avatar.jpg') }}">
                                 @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

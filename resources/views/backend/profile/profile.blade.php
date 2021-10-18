@@ -38,7 +38,7 @@
                         <div class="text-center">
                             @if(!empty($user->image))
                             <img class="profile-user-img img-fluid img-circle"
-                            src="{{asset('public/backend/images/profile/'.$user->image)}}"
+                            src="{{asset('public/backend/images/user_profile/'.$user->image)}}"
                             alt="User profile picture">
                             @else
                             <img class="profile-user-img img-fluid img-circle"
@@ -53,7 +53,7 @@
                         <h3 class="text-center">Not Found</h3>
                         @endif
                         @if (!empty($user->address))
-                        <p class="text-muted text-center"><span style="text-transform: capitalize">{{ $user->address }}</span></p>
+                        <p class="text-muted text-center" style="text-align: center"><span style="text-transform: capitalize">{!! $user->address !!}</span></p>
                         @else
                         <p class="text-center">Not Found</p>
                         @endif

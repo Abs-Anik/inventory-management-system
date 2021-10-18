@@ -40,5 +40,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/user/profile',[UserProfileController::class, 'show'])->name('user.profile.show');
         Route::get('/user/profile/edit',[UserProfileController::class, 'edit'])->name('user.profile.edit');
         Route::post('/user/profile/update/{id}',[UserProfileController::class, 'update'])->name('user.profile.update');
+
+        Route::get('/user/password/change',[UserProfileController::class, 'userPasswordChangeView'])->name('user.password.change');
+        Route::post('/user/password/change',[UserProfileController::class, 'userPasswordChangeUpdate'])->name('user.password.update');
     });
 });
