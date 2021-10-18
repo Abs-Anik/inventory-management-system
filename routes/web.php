@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\UserProfileController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 
 Auth::routes();
 
@@ -34,14 +33,16 @@ Route::middleware(['auth'])->group(function(){
          */
         Route::resource('users',UserController::class);
 
+        Route::group(['prefix'=> 'user','as'=>'user.'], function(){
         /**
-         * Manage User Profile
-         */
-        Route::get('/user/profile',[UserProfileController::class, 'show'])->name('user.profile.show');
-        Route::get('/user/profile/edit',[UserProfileController::class, 'edit'])->name('user.profile.edit');
-        Route::post('/user/profile/update/{id}',[UserProfileController::class, 'update'])->name('user.profile.update');
+        * Manage User Profile
+        */
+        Route::get('profile',[UserProfileController::class, 'show'])->name('profile.show');
+        Route::get('profile/edit',[UserProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('profile/update/{id}',[UserProfileController::class, 'update'])->name('profile.update');
 
-        Route::get('/user/password/change',[UserProfileController::class, 'userPasswordChangeView'])->name('user.password.change');
-        Route::post('/user/password/change',[UserProfileController::class, 'userPasswordChangeUpdate'])->name('user.password.update');
+        Route::get('password/change',[UserProfileController::class, 'userPasswordChangeView'])->name('password.change');
+        Route::post('password/change',[UserProfileController::class, 'userPasswordChangeUpdate'])->name('password.update');
+        });
     });
 });
