@@ -61,5 +61,56 @@
            </li>
         </ul>
      </li>
+     <li class="nav-item has-treeview {{ $prefix == 'admin/customer' ? 'menu-open' : '' }}">
+        <a href="#" class="nav-link">
+           <i class="nav-icon fas fa-copy"></i>
+           <p>
+               Manage Customer
+              <i class="fas fa-angle-left right"></i>
+           </p>
+        </a>
+        <ul class="nav nav-treeview">
+           <li class="nav-item">
+              <a href="{{ route('admin.customer.list') }}" class="nav-link {{ $route == 'admin.customer.list' ? 'active' : '' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>View Customer</p>
+              </a>
+           </li>
+        </ul>
+     </li>
+     <li class="nav-item has-treeview {{ $prefix == 'admin/unit' ? 'menu-open' : '' }}">
+        <a href="#" class="nav-link">
+           <i class="nav-icon fas fa-copy"></i>
+           <p>
+               Manage Unit
+              <i class="fas fa-angle-left right"></i>
+           </p>
+        </a>
+        <ul class="nav nav-treeview">
+           <li class="nav-item">
+              <a href="{{ route('admin.unit.list') }}" class="nav-link {{ $route == 'admin.unit.list' ? 'active' : '' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>View Unit</p>
+              </a>
+           </li>
+        </ul>
+     </li>
+     <li class="nav-item has-treeview {{ $prefix == 'admin/categories' ? 'menu-open' : '' }}">
+        <a href="#" class="nav-link">
+           <i class="nav-icon fas fa-copy"></i>
+           <p>
+               Manage Category
+              <i class="fas fa-angle-left right"></i>
+           </p>
+        </a>
+        <ul class="nav nav-treeview">
+           <li class="nav-item">
+              <a href="{{ route('admin.categories.list') }}" class="nav-link {{ $route == 'admin.categories.list' ? 'active' : '' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>View Category</p>
+              </a>
+           </li>
+        </ul>
+     </li>
     </ul>
  </nav>

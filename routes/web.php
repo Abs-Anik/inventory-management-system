@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\SupplierController;
+use App\Http\Controllers\Backend\UnitController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\UserProfileController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -56,6 +59,42 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/edit/{id}',[SupplierController::class, 'edit'])->name('edit');
             Route::post('/update/{id}',[SupplierController::class, 'update'])->name('update');
             Route::post('/delete/{id}',[SupplierController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::group(['prefix'=> 'customer','as'=>'customer.'], function(){
+            /**
+            * Manage Customer
+            */
+            Route::get('/',[CustomerController::class, 'index'])->name('list');
+            Route::get('/create',[CustomerController::class, 'create'])->name('create');
+            Route::post('/store',[CustomerController::class, 'store'])->name('store');
+            Route::get('/edit/{id}',[CustomerController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}',[CustomerController::class, 'update'])->name('update');
+            Route::post('/delete/{id}',[CustomerController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::group(['prefix'=> 'unit','as'=>'unit.'], function(){
+            /**
+            * Manage Unit
+            */
+            Route::get('/',[UnitController::class, 'index'])->name('list');
+            Route::get('/create',[UnitController::class, 'create'])->name('create');
+            Route::post('/store',[UnitController::class, 'store'])->name('store');
+            Route::get('/edit/{id}',[UnitController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}',[UnitController::class, 'update'])->name('update');
+            Route::post('/delete/{id}',[UnitController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::group(['prefix'=> 'categories','as'=>'categories.'], function(){
+            /**
+            * Manage Category
+            */
+            Route::get('/',[CategoryController::class, 'index'])->name('list');
+            Route::get('/create',[CategoryController::class, 'create'])->name('create');
+            Route::post('/store',[CategoryController::class, 'store'])->name('store');
+            Route::get('/edit/{id}',[CategoryController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}',[CategoryController::class, 'update'])->name('update');
+            Route::post('/delete/{id}',[CategoryController::class, 'destroy'])->name('destroy');
         });
     });
 });
