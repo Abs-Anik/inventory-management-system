@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
@@ -28,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -51,7 +52,6 @@ class LoginController extends Controller
 
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            // dd(auth()->user()->is_admin);
             if (auth()->user()->is_admin === 1) {
                 if($request->remember_me === null){
                     setcookie('login_email', $request->email,100);
@@ -64,12 +64,13 @@ class LoginController extends Controller
                     'Message' => 'Welcome Back :) ',
                     'alert-type' => 'info'
                 );
-                return redirect()->route('home')->with($notification);
+                return redirect()->route('admin.home')->with($notification);
             }else{
                 $notification = array(
                     'Message' => 'Sorry! You are profile in not active. Wait for admin approve',
                     'alert-type' => 'warning'
                 );
+                Auth::logout();
                 return redirect()->route('login')->with($notification);
             }
         }else{
@@ -78,7 +79,6 @@ class LoginController extends Controller
                 'alert-type' => 'error'
             );
             return redirect()->route('login')->with($notification);
-            // return Redirect::to('login')->with($notification);
         }
 
     }

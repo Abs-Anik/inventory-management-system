@@ -21,12 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 
 Auth::routes();
-
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::middleware(['auth'])->group(function(){
     /**
     * Admin Dashboard
     */
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/admin/home', [HomeController::class, 'adminIndex'])->name('admin.home');
     Route::group(['prefix'=> 'admin','as'=>'admin.'], function(){
         /**
          * Manage User
