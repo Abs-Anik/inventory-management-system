@@ -88,7 +88,7 @@ Create User
                                 <input type="password" id="passwordConfirm" name="password_confirmation" class="form-control" placeholder="Enter Confirm Password">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="submit" value="Save" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
                             </div>
                         </div>
                     </form>

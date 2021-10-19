@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\UserProfileController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -43,6 +44,18 @@ Route::middleware(['auth'])->group(function(){
 
         Route::get('password/change',[UserProfileController::class, 'userPasswordChangeView'])->name('password.change');
         Route::post('password/change',[UserProfileController::class, 'userPasswordChangeUpdate'])->name('password.update');
+        });
+
+        Route::group(['prefix'=> 'supplier','as'=>'supplier.'], function(){
+            /**
+            * Manage Supplier
+            */
+            Route::get('/',[SupplierController::class, 'index'])->name('list');
+            Route::get('/create',[SupplierController::class, 'create'])->name('create');
+            Route::post('/store',[SupplierController::class, 'store'])->name('store');
+            Route::get('/edit/{id}',[SupplierController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}',[SupplierController::class, 'update'])->name('update');
+            Route::post('/delete/{id}',[SupplierController::class, 'destroy'])->name('destroy');
         });
     });
 });

@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 @section('title')
-Edit User
+Create Supplier
 @endsection
 @section('main-content')
 <div class="content-wrapper">
@@ -9,13 +9,13 @@ Edit User
        <div class="container-fluid">
           <div class="row mb-2">
              <div class="col-sm-6">
-                <h1 class="m-0">Manage User</h1>
+                <h1 class="m-0">Manage Supplier</h1>
              </div>
              <!-- /.col -->
              <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                   <li class="breadcrumb-item active">User</li>
+                   <li class="breadcrumb-item active">Supplier</li>
                 </ol>
              </div>
              <!-- /.col -->
@@ -36,49 +36,51 @@ Edit User
                 <div class="card">
                    <div class="card-header">
                       <h3 class="card-title">
-                        Edit User
+                        Add Supplier
                       </h3>
                       <div class="card-tools">
                          <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                               <a href="{{ route('admin.users.index') }}" class="btn btn-primary btn-sm float-right"><i class="fa fa-list" aria-hidden="true"></i> User List</a>
+                               <a href="{{ route('admin.supplier.list') }}" class="btn btn-primary btn-sm float-right"><i class="fa fa-list" aria-hidden="true"></i> Supplier List</a>
                             </li>
                          </ul>
                       </div>
                    </div>
                    <!-- /.card-header -->
                    <div class="card-body">
-                    <form action="{{ route('admin.users.update',$user->id) }}" method="POST" id="myForm">
+                    <form action="{{ route('admin.supplier.store') }}" method="POST" id="myForm">
                         @csrf
-                        @method('PUT')
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="usertype">User Role</label>
-                                <select name="usertype" id="usertype" class="form-control @error('usertype') is-invalid @enderror">
-                                    <option value="">Select Role</option>
-                                    <option value="Admin" {{ $user->usertype == 'Admin' ? 'selected' : '' }}>Admin</option>
-                                    <option value="User" {{ $user->usertype == 'User' ? 'selected' : '' }}>User</option>
-                                </select>
-                                @error('usertype')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name">
+                                @error('name')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" value="{{ $user->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name">
-                                @error('name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                <label for="mobile_no">Mobile</label>
+                                <input type="text" id="mobile_no" name="mobile_no" class="form-control @error('mobile_no') is-invalid @enderror" placeholder="Enter Mobile Number">
+                                @error('mobile_no')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" value="{{ $user->email }}" class="form-control @error('email') is-invalid @enderror" placeholder="Enter Email">
+                                <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter Email">
                                 @error('email')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="address">Address</label>
+                                <textarea cols="30" rows="10" class="form-control @error('address') is-invalid @enderror summernote" name="address"></textarea>
+                                @error('address')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-6">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Update</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
                             </div>
                         </div>
                     </form>

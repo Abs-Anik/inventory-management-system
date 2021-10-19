@@ -110,7 +110,7 @@ Edit User Profile
                             </div>
                             @endif
                             <div class="form-group col-md-6">
-                                <input type="submit" value="Update" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Update</button>
                             </div>
                         </div>
                     </form>

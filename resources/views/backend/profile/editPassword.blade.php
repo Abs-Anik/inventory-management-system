@@ -63,7 +63,7 @@ Change Password
                                 <input type="password" id="passwordConfirm" name="password_confirmation" class="form-control" placeholder="Enter Confirm Password">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="submit" value="Update Password" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Update Password</button>
                             </div>
                         </div>
                     </form>

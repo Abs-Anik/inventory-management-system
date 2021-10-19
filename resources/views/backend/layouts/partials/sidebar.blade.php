@@ -44,5 +44,22 @@
          </li>
         </ul>
      </li>
+     <li class="nav-item has-treeview {{ $prefix == 'admin/supplier' ? 'menu-open' : '' }}">
+        <a href="#" class="nav-link">
+           <i class="nav-icon fas fa-copy"></i>
+           <p>
+               Manage Supplier
+              <i class="fas fa-angle-left right"></i>
+           </p>
+        </a>
+        <ul class="nav nav-treeview">
+           <li class="nav-item">
+              <a href="{{ route('admin.supplier.list') }}" class="nav-link {{ $route == 'admin.supplier.list' ? 'active' : '' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>View Supplier</p>
+              </a>
+           </li>
+        </ul>
+     </li>
     </ul>
  </nav>
