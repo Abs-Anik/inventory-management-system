@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
         $admin->password = Hash::make('123456');
         $admin->is_admin = 1;
         $admin->save();
+        $admin->assignRole('Super Admin');
 
         $admin = new User();
         $admin->usertype = "User";

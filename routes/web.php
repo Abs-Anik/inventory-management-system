@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UnitController;
 use App\Http\Controllers\Backend\UserController;
@@ -108,6 +109,12 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/edit/{id}',[ProductController::class, 'edit'])->name('edit');
             Route::post('/update/{id}',[ProductController::class, 'update'])->name('update');
             Route::post('/delete/{id}',[ProductController::class, 'destroy'])->name('destroy');
+        });
+        Route::group(['prefix'=> 'roles','as'=>'roles.'], function(){
+            /**
+             * Role & Permission
+             */
+            Route::resource('rolePermission',RoleController::class);
         });
     });
 });

@@ -54,6 +54,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{asset('public/backend/summernote/summernote-bs4.min.js')}}"></script>
     <script src="{{ asset('public/backend/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{asset('public/backend/select/js/select2.min.js')}}"></script>
     <script>
         $(document).ready(function() {
             $('.summernote').summernote({
@@ -127,5 +128,11 @@
                 )
             }
             });
+        });
+    </script>
+
+    <script>
+        $(".roles_select").select2({
+            placeholder: "Select Roles to Assign for Access Pages"
         });
     </script>

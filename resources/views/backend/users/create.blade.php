@@ -53,34 +53,34 @@ Create User
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="usertype">User Role</label>
-                                <select name="usertype" id="usertype" class="form-control @error('usertype') is-invalid @enderror">
-                                    <option value="">Select Role</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="User">User</option>
+                                <select class="roles_select form-control custom-select " id="roles" name="usertype[]" multiple>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    @endforeach
                                 </select>
                                 @error('usertype')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name">
                                 @error('name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter Email">
                                 @error('email')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="password">Password</label>
                                 <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter Password">
                                 @error('password')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">

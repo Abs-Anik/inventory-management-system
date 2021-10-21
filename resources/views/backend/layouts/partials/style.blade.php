@@ -30,4 +30,6 @@
     <link href="{{asset('public/backend/summernote/summernote-bs4.css')}}" rel="stylesheet">
 
     <!-- Dropify CSS -->
-<link rel="stylesheet" type="text/css" href="{{ asset('public/backend/dropify/css/dropify.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/backend/dropify/css/dropify.min.css') }}">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="{{ asset('public/backend/select/css/select2.min.css')}}">

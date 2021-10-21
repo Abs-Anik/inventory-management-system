@@ -27,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.users.create');
+        $roles = DB::table('roles')->get();
+        return view('backend.users.create', compact('roles'));
     }
 
     /**
@@ -39,7 +40,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'usertype' => 'required',
+            'usertype' => 'nullable',
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'nullable|string|min:8|confirmed',
@@ -47,11 +48,16 @@ class UserController extends Controller
         try {
         DB::beginTransaction();
         $user = new User();
-        $user->usertype = $request->usertype;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
+        // Assign Roles
+        if ($request->usertype != null) {
+                foreach ($request->usertype as $usertype) {
+                $user->assignRole($usertype);
+            }
+         }
         DB::commit();
         $notification = array(
         'Message' => 'New user Created Successfully!',
@@ -86,7 +92,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::where('id',$id)->first();
-        return view('backend.users.edit',compact('user'));
+        $roles = DB::table('roles')->get();
+        return view('backend.users.edit',compact('user', 'roles'));
     }
 
     /**
@@ -99,17 +106,24 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'usertype' => 'required',
+            'usertype' => 'nullable',
             'name' => 'required',
             'email' => 'required|unique:users,email,'.$id,
         ]);
         $user = User::where('id',$id)->first();
         try {
             DB::beginTransaction();
-            $user->usertype = $request->usertype;
             $user->name = $request->name;
             $user->email = $request->email;
             $user->update();
+            // Detach roles and Assign Roles
+            $user->roles()->detach();
+            // Assign Roles
+            if (!is_null($request->usertype)) {
+                foreach ($request->usertype as $usertype) {
+                    $user->assignRole($usertype);
+                }
+            }
             DB::commit();
             $notification = array(
             'Message' => 'User Updated Successfully!',
@@ -135,8 +149,9 @@ class UserController extends Controller
         $user = User::where('id',$id)->first();
         if(!empty($user))
         {
+            // Detach roles and Assign Roles
+            $user->roles()->detach();
             $user->delete();
-
             $notification = array(
                 'Message' => 'User Deleted successfully!',
                 'alert-type' => 'success'

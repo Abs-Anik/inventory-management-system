@@ -5,6 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>@yield('title', 'Inventory Management System || Dashboard')</title>
         @include('backend.layouts.partials.style')
+        @yield('extra-css')
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
       <div class="wrapper">
@@ -105,6 +106,6 @@
       <!-- ./wrapper -->
       @include('backend.layouts.partials.script')
       @yield('extra-script')
-      
+
    </body>
 </html>
