@@ -120,6 +120,11 @@
             .then((willDelete) => {
             if (willDelete) {
                 form.submit();
+                swal(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
             }
             });
         });
