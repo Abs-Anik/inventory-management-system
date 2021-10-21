@@ -6,7 +6,7 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
        <li class="nav-item has-treeview {{ $prefix == '/admin' ? 'menu-open' : '' }}">
           <a href="#" class="nav-link">
-             <i class="nav-icon fas fa-copy"></i>
+             <i class="nav-icon fas fa-users"></i>
              <p>
                  Manage User
                 <i class="fas fa-angle-left right"></i>
@@ -23,7 +23,7 @@
        </li>
        <li class="nav-item has-treeview {{ $prefix == 'admin/user' ? 'menu-open' : '' }}">
         <a href="#" class="nav-link">
-           <i class="nav-icon fas fa-copy"></i>
+           <i class="nav-icon fas fa-user"></i>
            <p>
                Manage Profile
               <i class="fas fa-angle-left right"></i>
@@ -46,7 +46,7 @@
      </li>
      <li class="nav-item has-treeview {{ $prefix == 'admin/supplier' ? 'menu-open' : '' }}">
         <a href="#" class="nav-link">
-           <i class="nav-icon fas fa-copy"></i>
+           <i class="nav-icon fas fa-address-book"></i>
            <p>
                Manage Supplier
               <i class="fas fa-angle-left right"></i>
@@ -63,7 +63,7 @@
      </li>
      <li class="nav-item has-treeview {{ $prefix == 'admin/customer' ? 'menu-open' : '' }}">
         <a href="#" class="nav-link">
-           <i class="nav-icon fas fa-copy"></i>
+           <i class="nav-icon fas fa-user-friends"></i>
            <p>
                Manage Customer
               <i class="fas fa-angle-left right"></i>
@@ -80,7 +80,7 @@
      </li>
      <li class="nav-item has-treeview {{ $prefix == 'admin/unit' ? 'menu-open' : '' }}">
         <a href="#" class="nav-link">
-           <i class="nav-icon fas fa-copy"></i>
+           <i class="nav-icon fas fa-balance-scale-left"></i>
            <p>
                Manage Unit
               <i class="fas fa-angle-left right"></i>
@@ -97,7 +97,7 @@
      </li>
      <li class="nav-item has-treeview {{ $prefix == 'admin/categories' ? 'menu-open' : '' }}">
         <a href="#" class="nav-link">
-           <i class="nav-icon fas fa-copy"></i>
+           <i class="nav-icon fa fa-th"></i>
            <p>
                Manage Category
               <i class="fas fa-angle-left right"></i>
@@ -114,7 +114,7 @@
      </li>
      <li class="nav-item has-treeview {{ $prefix == 'admin/products' ? 'menu-open' : '' }}">
       <a href="#" class="nav-link">
-         <i class="nav-icon fas fa-copy"></i>
+         <i class="nav-icon fab fa-product-hunt"></i>
          <p>
              Manage Product
             <i class="fas fa-angle-left right"></i>
@@ -131,7 +131,7 @@
    </li>
    <li class="nav-item has-treeview {{ $prefix == 'admin/roles' ? 'menu-open' : '' }}">
     <a href="#" class="nav-link">
-       <i class="nav-icon fas fa-copy"></i>
+       <i class="nav-icon fas fa-user-edit"></i>
        <p>
            Manage Role & Permission
           <i class="fas fa-angle-left right"></i>
