@@ -48,7 +48,7 @@ Edit Category
                    </div>
                    <!-- /.card-header -->
                    <div class="card-body">
-                    <form action="{{ route('admin.categories.update',$category->id) }}" method="POST" id="myForm">
+                    <form action="{{ route('admin.categories.update',$category->id) }}" method="POST" id="categoryForm">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -77,4 +77,37 @@ Edit Category
     </section>
     <!-- /.content -->
  </div>
+@endsection
+@section('extra-script')
+<script>
+   $(function () {
+  $('#categoryForm').validate({
+    rules: {
+      name: {
+        required: true,
+        minlength: 5,
+        maxlength: 35,
+      },
+    },
+    messages: {
+      name: {
+        required: "Please provide a category name",
+        minlength: "Your category name must be at least 5 characters long",
+        maxlength: "Your category name can not be 35 characters over"
+      }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
 @endsection

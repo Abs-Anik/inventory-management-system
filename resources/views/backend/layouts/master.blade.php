@@ -104,5 +104,7 @@
       </div>
       <!-- ./wrapper -->
       @include('backend.layouts.partials.script')
+      @yield('extra-script')
+      
    </body>
 </html>

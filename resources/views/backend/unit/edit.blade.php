@@ -48,7 +48,7 @@ Edit Unit
                    </div>
                    <!-- /.card-header -->
                    <div class="card-body">
-                    <form action="{{ route('admin.unit.update',$unit->id) }}" method="POST" id="myForm">
+                    <form action="{{ route('admin.unit.update',$unit->id) }}" method="POST" id="unitForm">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -77,4 +77,37 @@ Edit Unit
     </section>
     <!-- /.content -->
  </div>
+@endsection
+@section('extra-script')
+<script>
+   $(function () {
+  $('#unitForm').validate({
+    rules: {
+      name: {
+        required: true,
+        minlength: 2,
+        maxlength: 35,
+      },
+    },
+    messages: {
+      name: {
+        required: "Please provide a unit name",
+        minlength: "Your unit name must be at least 2 characters long",
+        maxlength: "Your unit name can not be 35 characters over"
+      }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
 @endsection
