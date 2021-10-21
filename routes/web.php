@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UnitController;
@@ -49,6 +50,13 @@ Route::middleware(['auth'])->group(function(){
 
         Route::get('password/change',[UserProfileController::class, 'userPasswordChangeView'])->name('password.change');
         Route::post('password/change',[UserProfileController::class, 'userPasswordChangeUpdate'])->name('password.update');
+        });
+
+        Route::group(['prefix'=> 'roles','as'=>'roles.'], function(){
+            /**
+             * Role & Permission
+             */
+            Route::resource('rolePermission',RoleController::class);
         });
 
         Route::group(['prefix'=> 'supplier','as'=>'supplier.'], function(){
@@ -110,11 +118,18 @@ Route::middleware(['auth'])->group(function(){
             Route::post('/update/{id}',[ProductController::class, 'update'])->name('update');
             Route::post('/delete/{id}',[ProductController::class, 'destroy'])->name('destroy');
         });
-        Route::group(['prefix'=> 'roles','as'=>'roles.'], function(){
+
+        Route::group(['prefix'=> 'purchase','as'=>'purchase.'], function(){
             /**
-             * Role & Permission
-             */
-            Route::resource('rolePermission',RoleController::class);
+            * Manage Purchase
+            */
+            Route::get('/',[PurchaseController::class, 'index'])->name('list');
+            Route::get('/create',[PurchaseController::class, 'create'])->name('create');
+            Route::post('/store',[PurchaseController::class, 'store'])->name('store');
+            Route::get('/edit/{id}',[PurchaseController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}',[PurchaseController::class, 'update'])->name('update');
+            Route::post('/delete/{id}',[PurchaseController::class, 'destroy'])->name('destroy');
         });
+
     });
 });

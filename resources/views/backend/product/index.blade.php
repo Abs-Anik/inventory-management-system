@@ -68,7 +68,7 @@ Product List
                                 <td><span style="text-transform: capitalize">{{ $product->name }}</span></td>
                                 <td><span style="text-transform: capitalize">{{ $product['unit']['name'] }}</span></td>
                                 <td>
-                                    <a href="{{ route('admin.products.edit',$product->id) }}" class="btn  btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                    <a href="{{ route('admin.products.edit',$product->id) }}" class="btn btn-xs-custome btn-success"><i class="fa fa-edit"></i> Edit</a>
                                     <form method="POST" action="{{ route('admin.products.destroy',$product->id) }}" style="display:inline-block">
                                         @csrf
                                         <button type="submit" class="btn btn-xs-custome btn-danger show_confirm" style="cursor:pointer" id="delete"><i class="fa fa-trash"></i> Delete</button>

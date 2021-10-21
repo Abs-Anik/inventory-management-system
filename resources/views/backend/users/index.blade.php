@@ -64,7 +64,7 @@ User List
                                 <td><span style="text-transform: capitalize">{{ $user->name }}</span></td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <a href="{{ route('admin.users.edit',$user->id) }}" class="btn  btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                    <a href="{{ route('admin.users.edit',$user->id) }}" class="btn btn-xs-custome btn-success"><i class="fa fa-edit"></i> Edit</a>
                                     <form method="POST" action="{{ route('admin.users.destroy',$user->id) }}" style="display:inline-block">
                                         @csrf
                                         @method('delete')

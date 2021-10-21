@@ -12,6 +12,7 @@
       <link rel="stylesheet" href="{{ asset('public/backend/plugins/jqvmap/jqvmap.min.css')}}">
       <!-- Theme style -->
       <link rel="stylesheet" href="{{asset('public/backend/dist/css/adminlte.min.css')}}">
+      <link rel="stylesheet" href="{{ asset('public/backend/custom/css/style.css') }}">
       <!-- overlayScrollbars -->
       <link rel="stylesheet" href="{{ asset('public/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
       <!-- Daterange picker -->
