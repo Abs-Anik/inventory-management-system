@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\Supplier;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +20,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('backend.category.index', compact('categories'));
+        $products = Product::all();
+        return view('backend.product.index', compact('products'));
     }
 
     /**
@@ -28,7 +31,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
+        $suppliers = Supplier::all();
+        $units = Unit::all();
+        $categories = Category::all();
+        return view('backend.product.create', compact('suppliers','units','categories'));
     }
 
     /**
@@ -40,20 +46,27 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'supplier_id' => 'required',
+            'unit_id' => 'required',
+            'category_id' => 'required',
             'name' => 'required',
         ]);
         try {
         DB::beginTransaction();
-        $category = new Category();
-        $category->name = $request->name;
-        $category->created_by = Auth::user()->id;
-        $category->save();
+        $product = new Product();
+        $product->supplier_id = $request->supplier_id;
+        $product->unit_id = $request->unit_id;
+        $product->category_id = $request->category_id;
+        $product->name = $request->name;
+        $product->quantity = 0;
+        $product->created_by = Auth::user()->id;
+        $product->save();
         DB::commit();
         $notification = array(
-        'Message' => 'New Category Created Successfully!',
+        'Message' => 'New Product Created Successfully!',
         'alert-type' => 'success'
         );
-        return redirect()->route('admin.categories.list')->with($notification);
+        return redirect()->route('admin.products.list')->with($notification);
 
         } catch (\Exception $e) {
             session()->flash('db_error', $e->getMessage());
@@ -70,8 +83,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::where('id', $id)->first();
-        return view('backend.category.edit', compact('category'));
+        $product = Product::where('id', $id)->first();
+        $suppliers = Supplier::all();
+        $units = Unit::all();
+        $categories = Category::all();
+        return view('backend.product.edit', compact('product', 'suppliers', 'units', 'categories'));
     }
 
     /**
@@ -84,20 +100,27 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'supplier_id' => 'required',
+            'unit_id' => 'required',
+            'category_id' => 'required',
             'name' => 'required',
         ]);
-        $category = Category::where('id', $id)->first();
+        $product = Product::where('id', $id)->first();
         try {
         DB::beginTransaction();
-        $category->name = $request->name;
-        $category->updated_by = Auth::user()->id;
-        $category->update();
+        $product->supplier_id = $request->supplier_id;
+        $product->unit_id = $request->unit_id;
+        $product->category_id = $request->category_id;
+        $product->name = $request->name;
+        $product->quantity = 0;
+        $product->updated_by = Auth::user()->id;
+        $product->save();
         DB::commit();
         $notification = array(
-        'Message' => 'Category Updated Successfully!',
+        'Message' => 'Product Updated Successfully!',
         'alert-type' => 'success'
         );
-        return redirect()->route('admin.categories.list')->with($notification);
+        return redirect()->route('admin.products.list')->with($notification);
 
         } catch (\Exception $e) {
             session()->flash('db_error', $e->getMessage());
@@ -114,12 +137,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::where('id', $id)->first();
-        $category->delete();
+        $product = Product::where('id', $id)->first();
+        $product->delete();
         $notification = array(
-            'Message' => 'Category Deleted Successfully!',
+            'Message' => 'Product Deleted Successfully!',
             'alert-type' => 'success'
         );
-        return redirect()->route('admin.categories.list')->with($notification);
+        return redirect()->route('admin.products.list')->with($notification);
     }
 }

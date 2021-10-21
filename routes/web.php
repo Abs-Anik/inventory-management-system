@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\UnitController;
 use App\Http\Controllers\Backend\UserController;
@@ -95,6 +96,18 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/edit/{id}',[CategoryController::class, 'edit'])->name('edit');
             Route::post('/update/{id}',[CategoryController::class, 'update'])->name('update');
             Route::post('/delete/{id}',[CategoryController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::group(['prefix'=> 'products','as'=>'products.'], function(){
+            /**
+            * Manage Category
+            */
+            Route::get('/',[ProductController::class, 'index'])->name('list');
+            Route::get('/create',[ProductController::class, 'create'])->name('create');
+            Route::post('/store',[ProductController::class, 'store'])->name('store');
+            Route::get('/edit/{id}',[ProductController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}',[ProductController::class, 'update'])->name('update');
+            Route::post('/delete/{id}',[ProductController::class, 'destroy'])->name('destroy');
         });
     });
 });
