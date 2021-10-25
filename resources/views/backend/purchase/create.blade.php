@@ -49,15 +49,22 @@ Create Purchase
                    <!-- /.card-header -->
                    <div class="card-body">
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="date">Date</label>
-                                <input type="text" name="date" id="datepicker" class="form-control" placeholder="YYYY-MM-DD" readonly>
+                                <input type="text" name="date" id="date" class="form-control datepicker" placeholder="YYYY-MM-DD" readonly>
                                 @error('date')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="supplier_id">Supplier</label>
+                            <div class="form-group col-md-4">
+                                <label for="purchase_no">Purchase Number</label>
+                                <input type="text" name="purchase_no" id="purchase_no" class="form-control" placeholder="Enter purchase number">
+                                @error('purchase_no')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="supplier_id">Supplier Name</label>
                                 <select name="supplier_id" id="supplier_id" class="form-control @error('supplier_id') is-invalid @enderror">
                                     <option value="">Select Supplier</option>
                                     @foreach ($suppliers as $supplier)
@@ -68,39 +75,26 @@ Create Purchase
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-6">
-                              <label for="unit_id">Unit</label>
-                              <select name="unit_id" id="unit_id" class="form-control @error('unit_id') is-invalid @enderror">
-                                  <option value="">Select Unit</option>
-                                  @foreach ($units as $unit)
-                                  <option value="{{$unit->id}}">{{$unit->name}}</option>
-                                  @endforeach
-                              </select>
-                              @error('unit_id')
-                                  <div class="alert alert-danger">{{ $message }}</div>
-                              @enderror
-                          </div>
-                          <div class="form-group col-md-6">
-                           <label for="category_id">Category</label>
-                           <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
-                               <option value="">Select Category</option>
-                               @foreach ($categories as $category)
-                               <option value="{{$category->id}}">{{$category->name}}</option>
-                               @endforeach
-                           </select>
-                           @error('category_id')
-                               <div class="alert alert-danger">{{ $message }}</div>
-                           @enderror
-                       </div>
-                            <div class="form-group col-md-6">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name">
-                                @error('name')
+                          <div class="form-group col-md-4">
+                                <label for="category_id">Category Name</label>
+                                <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                                    <option value="">Select Category</option>
+                                </select>
+                                @error('category_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col-md-6">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+                                <label for="product_id">Product Name</label>
+                                <select name="product_id" id="product_id" class="form-control @error('product_id') is-invalid @enderror">
+                                    <option value="">Select Category</option>
+                                </select>
+                                @error('product_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-2" style="padding-top: 30px">
+                                <button type="button" class="btn btn-primary" style="cursor: pointer"><i class="fa fa-plus-circle"></i> Add More</button>
                             </div>
                         </div>
                    </div>
@@ -121,7 +115,7 @@ Create Purchase
 
 @section('extra-script')
 <script>
-    $('#datepicker').datepicker({
+    $('.datepicker').datepicker({
         uiLibrary: 'bootstrap4',
         format: 'yyyy-mm-dd'
     });
