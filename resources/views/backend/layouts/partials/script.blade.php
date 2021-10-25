@@ -55,6 +55,8 @@
     <script src="{{asset('public/backend/summernote/summernote-bs4.min.js')}}"></script>
     <script src="{{ asset('public/backend/dropify/js/dropify.min.js') }}"></script>
     <script src="{{asset('public/backend/select/js/select2.min.js')}}"></script>
+    <!-- Date Picker -->
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
             $('.summernote').summernote({
@@ -136,3 +138,5 @@
             placeholder: "Select Roles to Assign for Access Pages"
         });
     </script>
+
+

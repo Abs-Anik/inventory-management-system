@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Purchase;
+use App\Models\Supplier;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -26,9 +29,9 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        // $suppliers = Supplier::all();
-        // $units = Unit::all();
-        // $categories = Category::all();
-        // return view('backend.product.create', compact('suppliers','units','categories'));
+        $suppliers = Supplier::all();
+        $units = Unit::all();
+        $categories = Category::all();
+        return view('backend.purchase.create', compact('suppliers','units','categories'));
     }
 }
