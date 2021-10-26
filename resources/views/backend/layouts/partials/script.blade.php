@@ -57,6 +57,10 @@
     <script src="{{asset('public/backend/select/js/select2.min.js')}}"></script>
     <!-- Date Picker -->
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <!-- Handlebars.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" type="text/javascript"></script>
+    <!-- Notify.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
             $('.summernote').summernote({

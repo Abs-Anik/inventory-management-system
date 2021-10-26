@@ -137,6 +137,7 @@ Route::middleware(['auth'])->group(function(){
             * Default Route
             */
             Route::get('/get-category',[DefaultController::class, 'getCategory'])->name('get-category');
+            Route::get('/get-product',[DefaultController::class, 'getProduct'])->name('get-product');
         });
 
     });
