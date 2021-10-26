@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\DefaultController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\RoleController;
@@ -129,6 +130,13 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/edit/{id}',[PurchaseController::class, 'edit'])->name('edit');
             Route::post('/update/{id}',[PurchaseController::class, 'update'])->name('update');
             Route::post('/delete/{id}',[PurchaseController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::group(['prefix'=> 'default','as'=>'default.'], function(){
+            /**
+            * Default Route
+            */
+            Route::get('/get-category',[DefaultController::class, 'getCategory'])->name('get-category');
         });
 
     });
