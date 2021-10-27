@@ -67,12 +67,17 @@ Supplier List
                                 <td>{{ $supplier->mobile_no }}</td>
                                 <td>{{ $supplier->email }}</td>
                                 <td>{!! $supplier->address !!}</td>
+                                @php
+                                    $count_supplier = App\Models\Product::where('supplier_id', $supplier->id)->count();
+                                @endphp
                                 <td>
                                     <a href="{{ route('admin.supplier.edit',$supplier->id) }}" class="btn btn-xs-custome btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                    @if($count_supplier < 1)
                                     <form method="POST" action="{{ route('admin.supplier.destroy',$supplier->id) }}" style="display:inline-block">
                                         @csrf
                                         <button type="submit" class="btn btn-xs-custome btn-danger show_confirm" style="cursor:pointer" id="delete"><i class="fa fa-trash"></i> Delete</button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

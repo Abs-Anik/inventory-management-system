@@ -61,12 +61,17 @@ Category List
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td><span style="text-transform: capitalize">{{ $category->name }}</span></td>
+                                @php
+                                    $count_category = App\Models\Product::where('category_id', $category->id)->count();
+                                @endphp
                                 <td>
                                     <a href="{{ route('admin.categories.edit',$category->id) }}" class="btn btn-xs-custome btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                    @if ($count_category < 1)
                                     <form method="POST" action="{{ route('admin.categories.destroy',$category->id) }}" style="display:inline-block">
                                         @csrf
                                         <button type="submit" class="btn btn-xs-custome btn-danger show_confirm" style="cursor:pointer" id="delete"><i class="fa fa-trash"></i> Delete</button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

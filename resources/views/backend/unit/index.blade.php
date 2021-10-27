@@ -61,12 +61,17 @@ Unit List
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td><span style="text-transform: capitalize">{{ $unit->name }}</span></td>
+                                @php
+                                    $count_unit = App\Models\Product::where('unit_id', $unit->id)->count();
+                                @endphp
                                 <td>
                                     <a href="{{ route('admin.unit.edit',$unit->id) }}" class="btn btn-xs-custome btn-success"><i class="fa fa-edit"></i> Edit</a>
+                                    @if ($count_unit < 1)
                                     <form method="POST" action="{{ route('admin.unit.destroy',$unit->id) }}" style="display:inline-block">
                                         @csrf
                                         <button type="submit" class="btn btn-xs-custome btn-danger show_confirm" style="cursor:pointer" id="delete"><i class="fa fa-trash"></i> Delete</button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

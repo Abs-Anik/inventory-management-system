@@ -119,6 +119,12 @@ class PurchaseController extends Controller
             // $purchase->status = 1;
             // $purchase->update();
         }
+        $notification = array(
+            'Message' => 'Purchase Pending Approved Successfully!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.purchase.pending')
+            ->with($notification);
 
     }
 }
