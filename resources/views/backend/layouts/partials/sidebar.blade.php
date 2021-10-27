@@ -162,6 +162,14 @@
           </a>
        </li>
     </ul>
+    <ul class="nav nav-treeview">
+      <li class="nav-item">
+         <a href="{{ route('admin.purchase.pending') }}" class="nav-link {{ $route == 'admin.purchase.pending' ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Approval Purchase</p>
+         </a>
+      </li>
+   </ul>
  </li>
     </ul>
  </nav>

@@ -111,7 +111,7 @@
             }
         @endif
     </script>
-
+    <!-- Delete Sweet Alert -->
     <script type="text/javascript">
         $('.show_confirm').click(function(event) {
         var form = $(this).closest("form");
@@ -136,7 +136,6 @@
             });
         });
     </script>
-
     <script>
         $(".roles_select").select2({
             placeholder: "Select Roles to Assign for Access Pages"

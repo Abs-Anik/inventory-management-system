@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use App\Models\Unit;
@@ -84,6 +85,41 @@ class PurchaseController extends Controller
                 return back();
             }
         }
+    }
+
+    public function destroy($id){
+        $purchase = Purchase::where('id', $id)->first();
+        $purchase->delete();
+        $notification = array(
+            'Message' => 'Purchase Deleted Successfully!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.purchase.list')
+            ->with($notification);
+    }
+
+    public function pendingList()
+    {
+        $purchasePendings = Purchase::orderBy('date', 'desc')->orderBy('id', 'desc')
+            ->where('purchases.status', 0)
+            ->get();
+        return view('backend.purchase.pending', compact('purchasePendings'));
+    }
+
+    public function approve($id)
+    {
+        $purchase = Purchase::where('id', $id)->first();
+        $product = Product::where('id', $purchase->product_id)->first();
+        $purchase_qty = ((float)($purchase->buying_qty)) + ((float)($product->quantity));
+        $product->quantity = $purchase_qty;
+        if($product->update()){
+            DB::table('purchases')
+                ->where('id',$id)
+                ->update(['status' => 1]);
+            // $purchase->status = 1;
+            // $purchase->update();
+        }
+
     }
 }
 

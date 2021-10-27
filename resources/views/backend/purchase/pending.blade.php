@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 @section('title')
-Purchase List
+Pending List
 @endsection
 @section('main-content')
 <div class="content-wrapper">
@@ -9,13 +9,13 @@ Purchase List
        <div class="container-fluid">
           <div class="row mb-2">
              <div class="col-sm-6">
-                <h1 class="m-0">Manage Purchase</h1>
+                <h1 class="m-0">Manage Perchase</h1>
              </div>
              <!-- /.col -->
              <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                   <li class="breadcrumb-item active">Purchase</li>
+                   <li class="breadcrumb-item active">Pending</li>
                 </ol>
              </div>
              <!-- /.col -->
@@ -36,15 +36,15 @@ Purchase List
                 <div class="card">
                    <div class="card-header">
                       <h3 class="card-title">
-                         Purchase List
+                         Pending List
                       </h3>
-                      <div class="card-tools">
+                      {{-- <div class="card-tools">
                          <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
                                <a href="{{ route('admin.purchase.create') }}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Purchase</a>
                             </li>
                          </ul>
-                      </div>
+                      </div> --}}
                    </div>
                    <!-- /.card-header -->
                    <div class="card-body">
@@ -66,7 +66,7 @@ Purchase List
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($purchases as $purchase)
+                        @foreach ($purchasePendings as $purchase)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $purchase->purchase_no }}</td>
@@ -90,10 +90,11 @@ Purchase List
                                 </td>
                                 <td>
                                    @if($purchase->status == 0)
-                                    <form method="POST" action="{{ route('admin.purchase.destroy',$purchase->id) }}" style="display:inline-block">
+                                    {{-- <form method="POST" action="{{ route('admin.purchase.destroy',$purchase->id) }}" style="display:inline-block">
                                         @csrf
                                         <button type="submit" class="btn btn-xs-custome btn-danger show_confirm btn-sm" style="cursor:pointer" id="delete"><i class="fa fa-trash"></i> Delete</button>
-                                    </form>
+                                    </form> --}}
+                                    <a title="Approve" href="{{route('admin.purchase.approve',$purchase->id)}}" class="btn btn-success btn-sm" id="approveBtn"> <i class="fa fa-check-circle"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -114,4 +115,35 @@ Purchase List
     </section>
     <!-- /.content -->
  </div>
+@endsection
+
+@section('extra-script')
+  <!-- Approve Sweet Alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script type="text/javascript">
+      $(function(){
+          $(document).on('click', '#approveBtn', function(e){
+              e.preventDefault();
+              var link = $(this).attr("href");
+              Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You want to Approve this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, Approve it!'
+                  }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = link;
+                      Swal.fire(
+                      'Approved!',
+                      'Your file has been approved.',
+                      'success'
+                      )
+                  }
+                  })
+          });
+      });
+  </script> 
 @endsection

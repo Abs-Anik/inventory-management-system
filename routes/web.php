@@ -127,9 +127,10 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/',[PurchaseController::class, 'index'])->name('list');
             Route::get('/create',[PurchaseController::class, 'create'])->name('create');
             Route::post('/store',[PurchaseController::class, 'store'])->name('store');
-            Route::get('/edit/{id}',[PurchaseController::class, 'edit'])->name('edit');
-            Route::post('/update/{id}',[PurchaseController::class, 'update'])->name('update');
+            Route::get('/pending',[PurchaseController::class, 'pendingList'])->name('pending');
             Route::post('/delete/{id}',[PurchaseController::class, 'destroy'])->name('destroy');
+            Route::get('/approve/{id}',[PurchaseController::class, 'approve'])->name('approve');
+
         });
 
         Route::group(['prefix'=> 'default','as'=>'default.'], function(){
