@@ -57,12 +57,6 @@
                         @else
                         <p class="text-center">Not Found</p>
                         @endif
-                        @if (!empty($user->name))
-                        @else
-                        @endif
-                        @if (!empty($user->name))
-                        @else
-                        @endif
                         <ul class="list-group list-group-unbordered mb-3">
                             @if (!empty($user->mobile))
                             <li class="list-group-item">
