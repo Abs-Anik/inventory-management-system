@@ -65,7 +65,7 @@ Create Purchase
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="supplier_id">Supplier Name</label>
-                                <select name="supplier_id" id="supplier_id" class="form-control @error('supplier_id') is-invalid @enderror">
+                                <select name="supplier_id" id="supplier_id" class="form-control @error('supplier_id') is-invalid @enderror select2">
                                     <option value="">Select Supplier</option>
                                     @foreach ($suppliers as $supplier)
                                     <option value="{{$supplier->id}}">{{$supplier->name}}</option>
@@ -77,23 +77,23 @@ Create Purchase
                             </div>
                           <div class="form-group col-md-4">
                                 <label for="category_id">Category Name</label>
-                                <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                                <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror select2">
                                     <option value="">Select Category</option>
                                 </select>
                                 @error('category_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="product_id">Product Name</label>
-                                <select name="product_id" id="product_id" class="form-control @error('product_id') is-invalid @enderror">
+                                <select name="product_id" id="product_id" class="form-control @error('product_id') is-invalid @enderror select2">
                                     <option value="">Select Product</option>
                                 </select>
                                 @error('product_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-2" style="padding-top: 30px">
+                            <div class="form-group col-md-2 ml-1" style="padding-top: 32px;">
                                 <button type="button" class="btn btn-primary addeventmore" style="cursor: pointer"><i class="fa fa-plus-circle"></i> Add More</button>
                             </div>
                         </div>
