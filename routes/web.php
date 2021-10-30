@@ -133,6 +133,19 @@ Route::middleware(['auth'])->group(function(){
 
         });
 
+        Route::group(['prefix'=> 'invoice','as'=>'invoice.'], function(){
+            /**
+            * Manage Invoice
+            */
+            Route::get('/',[InvoiceController::class, 'index'])->name('list');
+            Route::get('/create',[InvoiceController::class, 'create'])->name('create');
+            Route::post('/store',[InvoiceController::class, 'store'])->name('store');
+            Route::get('/pending',[InvoiceController::class, 'pendingList'])->name('pending');
+            Route::post('/delete/{id}',[InvoiceController::class, 'destroy'])->name('destroy');
+            Route::get('/approve/{id}',[InvoiceController::class, 'approve'])->name('approve');
+
+        });
+
         Route::group(['prefix'=> 'default','as'=>'default.'], function(){
             /**
             * Default Route
