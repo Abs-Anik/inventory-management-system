@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DefaultController;
+use App\Http\Controllers\Backend\InvoiceController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\PurchaseController;
 use App\Http\Controllers\Backend\RoleController;
@@ -130,6 +131,19 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/pending',[PurchaseController::class, 'pendingList'])->name('pending');
             Route::post('/delete/{id}',[PurchaseController::class, 'destroy'])->name('destroy');
             Route::get('/approve/{id}',[PurchaseController::class, 'approve'])->name('approve');
+
+        });
+
+        Route::group(['prefix'=> 'invoice','as'=>'invoice.'], function(){
+            /**
+            * Manage Invoice
+            */
+            Route::get('/',[InvoiceController::class, 'index'])->name('list');
+            Route::get('/create',[InvoiceController::class, 'create'])->name('create');
+            Route::post('/store',[InvoiceController::class, 'store'])->name('store');
+            Route::get('/pending',[InvoiceController::class, 'pendingList'])->name('pending');
+            Route::post('/delete/{id}',[InvoiceController::class, 'destroy'])->name('destroy');
+            Route::get('/approve/{id}',[InvoiceController::class, 'approve'])->name('approve');
 
         });
 
